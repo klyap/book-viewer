@@ -4,7 +4,16 @@ import { initializeApp } from "@firebase/app";
 import { useState } from 'react';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
-// Set the configuration for your app
+// TODO: Use keys from env variables file
+// const firebaseConfig = {
+//     apiKey: import.meta.env.VITE_APP_API_KEY,
+//     authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN,
+//     projectId: import.meta.env.VITE_APP_PROJECT_ID,
+//     storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET,
+//     messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
+//     appId: import.meta.env.VITE_APP_APP_ID
+// }
+
 const firebaseConfig = {
     apiKey: "AIzaSyCiCbpZlEkeHNL6QhnOkNEnDZ16N8TjwP0",
     authDomain: "book-viewer-87150.firebaseapp.com",
@@ -13,6 +22,7 @@ const firebaseConfig = {
     messagingSenderId: "735011482681",
     appId: "1:735011482681:web:0351d42abb3eee4fa031e8"
 };
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 
@@ -46,21 +56,9 @@ export const FileUploader = () => {
                 // Handle unsuccessful uploads
             },
             () => {
-                console.log(uploadTask.snapshot.ref.name);
                 setDownloadLink(`/view/${uploadTask.snapshot.ref.name}`);
-                // Handle successful uploads on complete
-                // getDownloadURL(uploadTask.snapshot.ref).then((downloadLink) => {
-                //     console.log('File available at', downloadLink);
-                //     setDownloadLink(downloadLink);
-                // });
             }
         );
-
-        // uploadBytes(storageRef, file).then((snapshot) => {
-        //     getDownloadURL(snapshot.ref).then((downloadLink) => {
-        //         setDownloadLink(downloadLink);
-        //     });
-        // }
     };
 
     return (
